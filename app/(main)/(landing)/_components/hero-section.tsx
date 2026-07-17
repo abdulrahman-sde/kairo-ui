@@ -201,7 +201,7 @@ function BrowserWindow({
             src={thumbnail}
             alt="Preview"
             fill
-            loading="lazy"
+            loading="eager"
             sizes="460px"
             className="object-cover object-top opacity-90 transition-all dark:invert dark:hue-rotate-180"
           />

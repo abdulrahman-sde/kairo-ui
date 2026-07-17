@@ -91,6 +91,13 @@ const METAS: Record<string, TemplateMeta> = {
       "A dark SaaS landing page for a data encryption platform with animated beam hero, features grid, code showcase, metrics, testimonials, pricing, FAQ, CTA, and footer.",
     dependencies: ["lucide-react", "motion"],
   },
+  endless: {
+    name: "endless",
+    title: "Endless",
+    description:
+      "A dark AI design tool landing page with macbook dashboard, feature cards, pricing, and code showcase. Built with Motion and Tailwind CSS v4.",
+    dependencies: ["motion"],
+  },
 };
 
 function walkDir(dir: string, base: string): string[] {

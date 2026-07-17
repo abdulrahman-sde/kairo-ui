@@ -85,6 +85,11 @@ const TEMPLATE_META: Record<
     category: "SaaS",
     sections: "video hero, marquee logo cloud, feature grid, how-it-works steps, studio showcase, testimonials, and pricing",
   },
+  endless: {
+    keyword: "AI design tool landing page template",
+    category: "SaaS",
+    sections: "hero, feature cards, stats, pricing, code showcase, updates, and footer",
+  },
 };
 
 export async function generateStaticParams() {

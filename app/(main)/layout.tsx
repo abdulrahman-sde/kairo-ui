@@ -55,11 +55,7 @@ export const metadata: Metadata = {
     images: ["/twitter-image"],
     creator: "@abdurahmanasif",
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-32x32.png",
-    apple: "/logo.png",
-  },
+  icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
   alternates: {
     canonical: "https://www.kairoui.online",
   },
