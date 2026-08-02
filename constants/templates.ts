@@ -20,6 +20,7 @@ export const TEMPLATES: Template[] = [
     color: "zinc",
     accent: "hsl(0 0% 100%)",
     thumbnail: endlessThumbnail,
+    isNew: true,
   },
   {
     slug: "triggerly",
@@ -86,6 +87,7 @@ export const TEMPLATES: Template[] = [
     color: "amber",
     accent: "hsl(38.6 92.1% 50.2%)",
     thumbnail: nixoleThumbnail,
+    isNew: true,
   },
   {
     slug: "aurora",

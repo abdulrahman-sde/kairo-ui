@@ -197,8 +197,13 @@ export default async function TemplateDetailPage({
           Back
         </Link>
         <div className="mb-12 max-w-2xl">
-          <h1 className="font-serif text-4xl font-medium leading-[1.1] tracking-tight md:text-5xl">
+          <h1 className="font-serif flex items-center gap-3 text-4xl font-medium leading-[1.1] tracking-tight md:text-5xl">
             {t.title}
+            {t.isNew && (
+              <span className="inline-block rounded-sm bg-[linear-gradient(135deg,color-mix(in_oklab,var(--primary)_80%,white)_0%,var(--primary)_100%)] px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-primary-foreground">
+                New
+              </span>
+            )}
           </h1>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground/80">
             {t.description}
