@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Lora, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { HeroHeader } from "@/components/layout/header";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import "../globals.css";
 const fontSans = Geist({
   subsets: ["latin"],
@@ -74,14 +75,15 @@ export default function MainLayout({
           src="https://scripts.simpleanalyticscdn.com/latest.js"
         ></script>
       </head>
+
       <body
         className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <HeroHeader />
           {children}
-          <Analytics />
-          <SpeedInsights />
+
+          <GoogleAnalytics gaId="G-TKTY9S1N38" />
         </ThemeProvider>
       </body>
     </html>
