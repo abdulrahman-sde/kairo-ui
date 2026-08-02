@@ -12,6 +12,15 @@ import triggerlyThumbnail from "@/public/thumbnails/triggerly.png";
 import endlessThumbnail from "@/public/thumbnails/endless.png";
 export const TEMPLATES: Template[] = [
   {
+    slug: "endless",
+    title: "Endless",
+    description:
+      "A dark AI design tool landing page with macbook dashboard, feature cards, pricing, and code showcase.",
+    color: "zinc",
+    accent: "hsl(0 0% 100%)",
+    thumbnail: endlessThumbnail,
+  },
+  {
     slug: "triggerly",
     title: "Triggerly",
     description:
@@ -29,15 +38,7 @@ export const TEMPLATES: Template[] = [
     accent: "hsl(290 40% 72%)",
     thumbnail: xeroThumbnail,
   },
-  {
-    slug: "endless",
-    title: "Endless",
-    description:
-      "A dark AI design tool landing page with macbook dashboard, feature cards, pricing, and code showcase.",
-    color: "zinc",
-    accent: "hsl(0 0% 100%)",
-    thumbnail: endlessThumbnail,
-  },
+
   {
     slug: "nova",
     title: "Nova",
@@ -112,6 +113,14 @@ export const TEMPLATES: Template[] = [
     color: "mint",
     accent: "hsl(142.1 70.6% 45.3%)",
     thumbnail: nexoraThumbnail,
+  },
+  {
+    slug: "nixole",
+    title: "Nixole",
+    description:
+      "An AI healthcare landing page with mesh gradient hero, animated showcase card, and floating glass sections for patient conversion.",
+    color: "amber",
+    accent: "hsl(38.6 92.1% 50.2%)",
   },
 ];
 

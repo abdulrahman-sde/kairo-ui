@@ -98,6 +98,13 @@ const METAS: Record<string, TemplateMeta> = {
       "A dark AI design tool landing page with macbook dashboard, feature cards, pricing, and code showcase. Built with Motion and Tailwind CSS v4.",
     dependencies: ["motion"],
   },
+  nixole: {
+    name: "nixole",
+    title: "Nixole",
+    description:
+      "An AI healthcare landing page with mesh gradient hero, animated showcase card, and floating glass sections for patient conversion. Built with Motion and Tailwind CSS v4.",
+    dependencies: ["lucide-react", "motion"],
+  },
 };
 
 function walkDir(dir: string, base: string): string[] {
