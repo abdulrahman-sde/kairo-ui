@@ -24,9 +24,7 @@ export default function CTA() {
         >
           Ready to convert every
           <br />
-          <span className="text-foreground/25">
-            patient that calls?
-          </span>
+          <span className="text-foreground/25">patient that calls?</span>
         </motion.h2>
 
         <motion.div
@@ -46,12 +44,14 @@ export default function CTA() {
           >
             Book a demo
           </a>
-          <a
-            href="#"
-            className="inline-flex items-center rounded-full px-5 py-2 text-[14px] font-semibold text-accent-foreground bg-accent hover:scale-[1.02] transition-transform"
-          >
-            Let&apos;s Talk
-          </a>
+          <button>
+            <a
+              href="#"
+              className="inline-flex items-center  rounded-full px-5 py-2 text-[14px] font-semibold text-accent-foreground bg-blue-300"
+            >
+              Let&apos;s Talk
+            </a>
+          </button>
         </motion.div>
       </div>
     </section>

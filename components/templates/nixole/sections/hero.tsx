@@ -20,7 +20,10 @@ function AnimatedWords({
   return (
     <span className={className}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden align-bottom leading-[1.05] pb-[0.2em]">
+        <span
+          key={i}
+          className="inline-block overflow-hidden align-bottom leading-[1.05] pb-[0.2em]"
+        >
           <motion.span
             className="inline-block"
             initial={{ y: "110%", opacity: 0 }}
@@ -74,11 +77,7 @@ export default function Hero() {
           />
         </div>
         <div>
-          <AnimatedWords
-            text="for your"
-            delayStart={1.95}
-            stagger={0.05}
-          />
+          <AnimatedWords text="for your" delayStart={1.95} stagger={0.05} />
           <span className="inline-flex items-center align-middle mx-2">
             <motion.video
               src="https://qclay.design/lovable/nixole/nurse-video.mp4"
@@ -146,9 +145,7 @@ export default function Hero() {
         >
           Book a demo
         </motion.a>
-        <motion.a
-          href="#"
-          className="inline-flex items-center rounded-full px-6 py-2.5 text-[14px] font-semibold text-accent-foreground bg-accent hover:scale-[1.02] transition-transform"
+        <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{
@@ -157,8 +154,15 @@ export default function Hero() {
             delay: 2.8,
           }}
         >
-          Let&apos;s Talk
-        </motion.a>
+          <button>
+            <a
+              href="#"
+              className="inline-flex items-center rounded-full px-6 py-2.5 text-[14px] font-semibold text-accent-foreground  bg-blue-300"
+            >
+              Let&apos;s Talk
+            </a>
+          </button>
+        </motion.div>
       </div>
     </section>
   );

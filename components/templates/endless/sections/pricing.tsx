@@ -5,15 +5,12 @@ import { WordsReveal } from "../lib/animations";
 
 const ICONS = "https://qclay.design/lovable/codeba/icons/";
 const checkMarkUrl = ICONS + "CheckMark.svg";
-const figmaLogoUrl = ICONS + "figma.svg";
-const logo2Url = ICONS + "Logo2.svg";
-const logo3Url = ICONS + "Logo3.svg";
 
 export function Pricing({ className }: { className?: string }) {
   return (
     <section
       aria-label="Pricing"
-      className={`bg-black px-5 py-16 mt-12 ${className ?? ""}`}
+      className={`bg-black px-5 py-16 ${className ?? ""}`}
     >
       <div className="max-w-6xl mx-auto">
         <WordsReveal
@@ -40,7 +37,7 @@ export function Pricing({ className }: { className?: string }) {
               { label: "Team collaboration", dim: true },
             ]}
             cta="Get Started"
-            ctaClass="bg-neutral-900 text-white"
+            ctaClass="bg-white text-neutral-950"
           />
           <PricingCard
             price="$59"
@@ -54,10 +51,10 @@ export function Pricing({ className }: { className?: string }) {
               { label: "Team collaboration" },
               { label: "AI Co-Producer™" },
               { label: "Priority support" },
-              { label: "API access" },
+              { label: "API access", dim: true },
             ]}
             cta="Send Message"
-            ctaClass="bg-transparent text-stone-950 border border-stone-950/50"
+            ctaClass="bg-transparent text-white border border-white/20"
           />
           <PricingCard
             price="$99"
@@ -72,11 +69,9 @@ export function Pricing({ className }: { className?: string }) {
               { label: "AI Co-Producer™" },
               { label: "24/7 Priority support" },
               { label: "Full API access" },
-              { label: "Custom integrations" },
-              { label: "Dedicated account manager" },
             ]}
             cta="Contact Sales"
-            ctaClass="bg-neutral-900 text-white"
+            ctaClass="bg-white text-neutral-950"
           />
         </div>
       </div>
@@ -103,7 +98,11 @@ function PricingCard({
   };
   return (
     <motion.article
-      className="flex flex-col mt-10 rounded-2xl bg-white p-5 shadow-xl shadow-black/20 border border-white/10"
+      className="flex flex-col mt-10 rounded-2xl border-white/10 border p-6"
+      style={{
+        backgroundColor: "#0F0D0D",
+        boxShadow: "0 20px 50px -20px rgba(0,0,0,0.8)",
+      }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
@@ -114,24 +113,24 @@ function PricingCard({
         variants={item}
         transition={{ duration: 0.55, ease: "easeOut" }}
       >
-        <span className="text-xl sm:text-2xl font-medium text-stone-950">
+        <span className="text-xl sm:text-2xl font-medium text-white">
           {price}
         </span>
         <span className="text-xs sm:text-sm text-neutral-500">/ Per Month</span>
       </motion.div>
       <motion.p
-        className="text-xs sm:text-sm text-neutral-600 mt-2"
+        className="text-xs sm:text-sm text-neutral-400 mt-3 leading-6"
         variants={item}
         transition={{ duration: 0.55, ease: "easeOut" }}
       >
         {description}
       </motion.p>
       <motion.div
-        className="border-t border-neutral-200 my-3"
+        className="border-t border-white/10 my-3"
         variants={item}
         transition={{ duration: 0.5, ease: "easeOut" }}
       />
-      <div className="flex flex-col gap-2 flex-1">
+      <div className="flex flex-col gap-3 flex-1">
         {features.map((f) => (
           <motion.div
             key={f.label}
@@ -140,12 +139,18 @@ function PricingCard({
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
             <div
-              className={`size-4 bg-stone-950 rounded-full flex justify-center items-center shrink-0 ${f.dim ? "opacity-20" : ""}`}
+              className={`size-4 bg-white/10 rounded-full flex justify-center items-center shrink-0 ${f.dim ? "opacity-40" : ""}`}
             >
-              <img src={checkMarkUrl} alt="" width={12} height={12} />
+              <img
+                src={checkMarkUrl}
+                alt=""
+                width={12}
+                height={12}
+                className="opacity-80"
+              />
             </div>
             <span
-              className={`text-xs sm:text-sm ${f.dim ? "text-neutral-400" : "text-stone-950"}`}
+              className={`text-xs sm:text-sm ${f.dim ? "text-neutral-500" : "text-neutral-100"}`}
             >
               {f.label}
             </span>
