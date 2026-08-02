@@ -10,7 +10,17 @@ import luminaThumbnail from "@/public/thumbnails/lumina.png";
 import nextoThumbnail from "@/public/thumbnails/nexto.png";
 import triggerlyThumbnail from "@/public/thumbnails/triggerly.png";
 import endlessThumbnail from "@/public/thumbnails/endless.png";
+import nixoleThumbnail from "@/public/thumbnails/nixole.png";
 export const TEMPLATES: Template[] = [
+  {
+    slug: "endless",
+    title: "Endless",
+    description:
+      "A dark AI design tool landing page with macbook dashboard, feature cards, pricing, and code showcase.",
+    color: "zinc",
+    accent: "hsl(0 0% 100%)",
+    thumbnail: endlessThumbnail,
+  },
   {
     slug: "triggerly",
     title: "Triggerly",
@@ -29,15 +39,7 @@ export const TEMPLATES: Template[] = [
     accent: "hsl(290 40% 72%)",
     thumbnail: xeroThumbnail,
   },
-  {
-    slug: "endless",
-    title: "Endless",
-    description:
-      "A dark AI design tool landing page with macbook dashboard, feature cards, pricing, and code showcase.",
-    color: "zinc",
-    accent: "hsl(0 0% 100%)",
-    thumbnail: endlessThumbnail,
-  },
+
   {
     slug: "nova",
     title: "Nova",
@@ -75,6 +77,15 @@ export const TEMPLATES: Template[] = [
     color: "indigo",
     accent: "hsl(239 84% 67%)",
     thumbnail: luminaThumbnail,
+  },
+  {
+    slug: "nixole",
+    title: "Nixole",
+    description:
+      "An AI healthcare landing page with mesh gradient hero, animated showcase card, and floating glass sections for patient conversion.",
+    color: "amber",
+    accent: "hsl(38.6 92.1% 50.2%)",
+    thumbnail: nixoleThumbnail,
   },
   {
     slug: "aurora",

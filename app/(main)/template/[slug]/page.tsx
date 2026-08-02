@@ -90,6 +90,11 @@ const TEMPLATE_META: Record<
     category: "SaaS",
     sections: "hero, feature cards, stats, pricing, code showcase, updates, and footer",
   },
+  nixole: {
+    keyword: "AI healthcare landing page template",
+    category: "SaaS",
+    sections: "header, hero with animated words, mesh gradient showcase card, how-it-works, intelligence grid, outcomes stats, testimonials, and CTA",
+  },
 };
 
 export async function generateStaticParams() {

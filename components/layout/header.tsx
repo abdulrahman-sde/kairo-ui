@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
-import { ChevronRight, Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -13,6 +12,8 @@ import {
 } from "motion/react";
 import { useMedia } from "@/hooks/use-media";
 import { useTheme } from "next-themes";
+import { ChevronRight, Menu, Sun, X } from "reicon-react";
+import { Moon } from "lucide-react";
 
 type MenuItem = { name: string; href: string };
 const menuItems: MenuItem[] = [];
