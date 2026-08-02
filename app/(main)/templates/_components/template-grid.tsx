@@ -55,6 +55,13 @@ export default function TemplateGrid() {
                     </div>
                   )}
 
+                  {/* New chip */}
+                  {t.isNew && (
+                    <span className="absolute top-2 left-2 z-10 rounded-sm bg-[linear-gradient(135deg,color-mix(in_oklab,var(--primary)_80%,white)_0%,var(--primary)_100%)] px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-primary-foreground">
+                      New
+                    </span>
+                  )}
+
                   {/* Hover overlay */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <span className="flex items-center gap-1.5 rounded-full bg-background px-4 py-2 text-xs font-medium ring-1 ring-border shadow-sm">

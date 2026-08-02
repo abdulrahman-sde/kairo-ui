@@ -11,4 +11,6 @@ export interface Template {
   accent: string;
   /** Path relative to /public, e.g. "/previews/notio.jpg". 1280×800 (16/10). */
   thumbnail?: StaticImageData;
+  /** Shows a "New" chip on the template card. */
+  isNew?: boolean;
 }
