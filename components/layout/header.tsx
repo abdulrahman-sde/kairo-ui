@@ -53,7 +53,13 @@ export const HeroHeader = () => {
     <header>
       <nav className="fixed z-20 w-full">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="relative flex items-center justify-between py-5">
+          <div
+            className={cn(
+              "relative flex items-center justify-between py-5 duration-300",
+              isScrolled &&
+                "border-border bg-background/85 border-b backdrop-blur-xl lg:border-transparent lg:bg-transparent lg:backdrop-blur-none",
+            )}
+          >
             {/* Left: logo (fades out on scroll, replaced by floating pill) */}
             <Link
               href="/"

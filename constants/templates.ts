@@ -13,6 +13,15 @@ import endlessThumbnail from "@/public/thumbnails/endless.png";
 import nixoleThumbnail from "@/public/thumbnails/nixole.png";
 export const TEMPLATES: Template[] = [
   {
+    slug: "essentials",
+    title: "Essentials",
+    description:
+      "A light e-commerce landing page for an apparel store with full-screen hero, featured products, shop-by-category grid, and CTA.",
+    color: "amber",
+    accent: "hsl(0 0% 8%)",
+    publishedAt: "2026-08-07",
+  },
+  {
     slug: "endless",
     title: "Endless",
     description:
@@ -20,7 +29,7 @@ export const TEMPLATES: Template[] = [
     color: "zinc",
     accent: "hsl(0 0% 100%)",
     thumbnail: endlessThumbnail,
-    isNew: true,
+    publishedAt: "2026-08-01",
   },
   {
     slug: "triggerly",
@@ -30,6 +39,7 @@ export const TEMPLATES: Template[] = [
     color: "zinc",
     accent: "hsl(0 0% 100%)",
     thumbnail: triggerlyThumbnail,
+    publishedAt: "2026-07-20",
   },
   {
     slug: "xero",
@@ -39,6 +49,7 @@ export const TEMPLATES: Template[] = [
     color: "purple",
     accent: "hsl(290 40% 72%)",
     thumbnail: xeroThumbnail,
+    publishedAt: "2026-07-02",
   },
 
   {
@@ -49,6 +60,7 @@ export const TEMPLATES: Template[] = [
     color: "amber",
     accent: "hsl(38.6 92.1% 50.2%)",
     thumbnail: novaThumbnail,
+    publishedAt: "2026-06-20",
   },
   {
     title: "Orbit",
@@ -58,6 +70,7 @@ export const TEMPLATES: Template[] = [
     color: "slate",
     accent: "neutral",
     thumbnail: orbitThumbnail,
+    publishedAt: "2026-06-10",
   },
 
   {
@@ -68,6 +81,7 @@ export const TEMPLATES: Template[] = [
     color: "amber",
     accent: "hsl(45 93% 47%)",
     thumbnail: popcornThumbnail,
+    publishedAt: "2026-05-15",
   },
 
   {
@@ -78,6 +92,7 @@ export const TEMPLATES: Template[] = [
     color: "indigo",
     accent: "hsl(239 84% 67%)",
     thumbnail: luminaThumbnail,
+    publishedAt: "2026-05-10",
   },
   {
     slug: "nixole",
@@ -87,7 +102,7 @@ export const TEMPLATES: Template[] = [
     color: "amber",
     accent: "hsl(38.6 92.1% 50.2%)",
     thumbnail: nixoleThumbnail,
-    isNew: true,
+    publishedAt: "2026-07-28",
   },
   {
     slug: "aurora",
@@ -97,6 +112,7 @@ export const TEMPLATES: Template[] = [
     color: "zinc",
     accent: "hsl(0 0% 100%)",
     thumbnail: auroraThumbnail,
+    publishedAt: "2026-04-22",
   },
   {
     slug: "glaze",
@@ -106,6 +122,7 @@ export const TEMPLATES: Template[] = [
     color: "zinc",
     accent: "hsl(0 0% 100%)",
     thumbnail: glazeThumbnail,
+    publishedAt: "2026-04-02",
   },
   {
     slug: "nexto",
@@ -115,6 +132,7 @@ export const TEMPLATES: Template[] = [
     color: "purple",
     accent: "hsl(248 82% 69%)",
     thumbnail: nextoThumbnail,
+    publishedAt: "2026-03-18",
   },
 
   {
@@ -125,20 +143,30 @@ export const TEMPLATES: Template[] = [
     color: "mint",
     accent: "hsl(142.1 70.6% 45.3%)",
     thumbnail: nexoraThumbnail,
+    publishedAt: "2026-03-02",
   },
 ];
 
-export const TEMPLATE_CATEGORIES = [
-  "All",
-  "SaaS",
-  "Portfolio",
-  "Agency",
-  "Mobile App",
-  "Waitlist",
-  "Blog",
-  "E-commerce",
-  "Open source",
-  "Newsletter",
-  "Event",
-  "Local business",
-] as const;
+export type TemplateSort = "all" | "new";
+
+export const TEMPLATE_SORTS: {
+  slug: TemplateSort;
+  label: string;
+  title: string;
+}[] = [
+  { slug: "all", label: "All", title: "All templates" },
+  { slug: "new", label: "New", title: "Newest templates" },
+];
+
+export function sortTemplates(
+  templates: Template[],
+  sort: TemplateSort,
+): Template[] {
+  if (sort === "new") {
+    return [...templates].sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    );
+  }
+  return templates;
+}

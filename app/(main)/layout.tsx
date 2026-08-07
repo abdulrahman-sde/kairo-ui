@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     "A Growing collection of free, MIT-licensed landing page templates for Next.js 16 and Tailwind CSS v4. Install any template in seconds with the shadcn CLI. No signup, no paywalls.",
   authors: [{ name: "Abdul Rahman Asif" }],
   creator: "Abdul Rahman Asif",
+
   openGraph: {
     title: "Free Next.js Landing Page Templates — Kairo UI",
     description:

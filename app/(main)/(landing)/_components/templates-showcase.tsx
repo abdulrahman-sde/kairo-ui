@@ -62,13 +62,6 @@ export default function TemplatesShowcase() {
                       <TemplateThumb t={t} />
                     )}
 
-                    {/* New chip */}
-                    {t.isNew && (
-                      <span className="absolute top-2 left-2 z-10 rounded-sm bg-[linear-gradient(135deg,color-mix(in_oklab,var(--primary)_80%,white)_0%,var(--primary)_100%)] px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-primary-foreground">
-                        New
-                      </span>
-                    )}
-
                     <div className="group-hover:opacity-100 absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:bg-black/5">
                       <span className="bg-background ring-border flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs ring-1">
                         Preview <ArrowUpRight className="size-3" />

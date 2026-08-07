@@ -55,6 +55,7 @@ export default function PeaceOfMindSection() {
               src="https://i.postimg.cc/7ZcgPgML/Untitled-(1).png"
               width={60}
               height={100}
+              unoptimized
             />
           </div>
           <h3 className="mb-3 font-serif text-2xl font-medium">

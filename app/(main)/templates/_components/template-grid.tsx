@@ -1,13 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   TemplateMock,
   colorToVariant,
 } from "@/components/shared/template-mock";
-import { TEMPLATES } from "@/constants/templates";
+import { TEMPLATES, TEMPLATE_SORTS } from "@/constants/templates";
+import type { Template } from "@/types/template";
+import type { TemplateSort } from "@/constants/templates";
 
-export default function TemplateGrid() {
+export default function TemplateGrid({
+  templates = TEMPLATES,
+  activeSort = "all",
+}: {
+  templates?: Template[];
+  activeSort?: TemplateSort;
+}) {
   return (
     <div className="pt-32 pb-28 px-4">
       {/* Page header */}
@@ -20,12 +29,40 @@ export default function TemplateGrid() {
           Tailwind. Pick one, run a single command, and it drops straight into
           your project.
         </p>
+
+        {/* Sort chips */}
+        <div className="mt-6 flex flex-wrap items-center gap-2">
+          {TEMPLATE_SORTS.map((sort) => {
+            const active = sort.slug === activeSort;
+            return (
+              <Button
+                key={sort.slug}
+                variant={active ? "default" : "ghost"}
+                size="sm"
+                asChild
+                aria-current={active ? "page" : undefined}
+                className={active ? "px-4" : "px-4 text-muted-foreground"}
+              >
+                <Link
+                  href={
+                    sort.slug === "all"
+                      ? "/templates"
+                      : `/templates/${sort.slug}`
+                  }
+                >
+                  {sort.label}
+                </Link>
+              </Button>
+            );
+          })}
+        </div>
+
         <div className="border-border mt-8 h-px w-full" />
       </div>
 
       {/* Grid */}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        {TEMPLATES.map((t) => (
+        {templates.map((t) => (
           <Link
             key={t.slug}
             href={`/template/${t.slug}`}
@@ -53,13 +90,6 @@ export default function TemplateGrid() {
                         variant={colorToVariant(t.color)}
                       />
                     </div>
-                  )}
-
-                  {/* New chip */}
-                  {t.isNew && (
-                    <span className="absolute top-2 left-2 z-10 rounded-sm bg-[linear-gradient(135deg,color-mix(in_oklab,var(--primary)_80%,white)_0%,var(--primary)_100%)] px-2.5 py-0.5 text-[11px] font-medium tracking-wide text-primary-foreground">
-                      New
-                    </span>
                   )}
 
                   {/* Hover overlay */}
