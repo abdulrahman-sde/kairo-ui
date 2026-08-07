@@ -31,6 +31,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.prod.website-files.com",
       },
+      {
+        protocol: "https",
+        hostname: "pub-f170a2592d2c4a1485466404c36807be.r2.dev",
+      },
+      {
+        protocol: "https",
+        hostname: "qclay.design",
+      },
     ],
   },
 };

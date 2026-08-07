@@ -8,9 +8,18 @@ import {
   Monitor,
   Code2,
   ArrowUpRight,
+  BookOpen,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   FileTree,
   type FileTreeElement,
@@ -18,7 +27,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 type PackageManager = "bun" | "npm" | "pnpm" | "yarn";
 
@@ -101,11 +110,13 @@ function buildFileTree(files: TemplateFile[]): FileTreeElement[] {
 
 export function TemplateViewer({
   files,
+  imageHosts,
   command,
   src,
   name,
 }: {
   files: TemplateFile[];
+  imageHosts: string[];
   command: string;
   src: string;
   name: string;
@@ -265,6 +276,7 @@ export function TemplateViewer({
               <Copy className="size-3" />
             )}
           </Button>
+          {imageHosts.length > 0 && <InstallGuide imageHosts={imageHosts} />}
         </div>
       </div>
 
@@ -325,5 +337,105 @@ export function TemplateViewer({
         </div>
       )}
     </div>
+  );
+}
+
+function InstallGuide({ imageHosts }: { imageHosts: string[] }) {
+  const [configCopied, setConfigCopied] = useState(false);
+
+  const remotePatternsConfig = useMemo(() => {
+    if (imageHosts.length === 0) return "";
+    const patterns = imageHosts
+      .map((host) => `    { protocol: "https", hostname: "${host}" },`)
+      .join("\n");
+    return `images: {\n  remotePatterns: [\n${patterns}\n  ],\n},`;
+  }, [imageHosts]);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(remotePatternsConfig);
+      setConfigCopied(true);
+      setTimeout(() => setConfigCopied(false), 2000);
+    } catch {
+      // ignore
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-1.5 text-[11px] h-7 px-2"
+        >
+          <BookOpen className="size-3" />
+          Guide
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Installation guide</DialogTitle>
+          <DialogDescription>
+            {imageHosts.length > 0
+              ? "Two steps — install the template, then allow its images."
+              : "Install the template in your Next.js project."}
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-primary-foreground">
+                1
+              </span>
+              <p className="text-sm font-medium">Install the template</p>
+            </div>
+            <p className="text-xs text-muted-foreground pl-7">
+              Copy the install command at the top — that matches your package
+              manager — and run it inside your Next.js project.
+            </p>
+          </div>
+
+          {imageHosts.length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-primary-foreground">
+                  2
+                </span>
+                <p className="text-sm font-medium">
+                  Add these remote patterns to next.config.ts
+                </p>
+                <button
+                  onClick={handleCopy}
+                  className={cn(
+                    "flex shrink-0 items-center gap-1.5 rounded-md border border-border bg-background px-2 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground",
+                    configCopied &&
+                      "border-green-500/50 text-green-600 dark:text-green-400 bg-green-500/10",
+                  )}
+                >
+                  {configCopied ? (
+                    <Check className="size-3" />
+                  ) : (
+                    <Copy className="size-3" />
+                  )}
+                  {configCopied ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <p className="text-xs text-muted-foreground pl-7">
+                Paste this inside{" "}
+                <code className="font-mono text-[11px]">nextConfig</code> to
+                avoid the{" "}
+                <code className="font-mono text-[11px]">Invalid src prop</code>{" "}
+                error.
+              </p>
+              <pre className="overflow-x-auto rounded-lg border border-border bg-muted/30 p-3 font-mono text-[11px] leading-[1.6] text-muted-foreground">
+                {remotePatternsConfig}
+              </pre>
+            </div>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

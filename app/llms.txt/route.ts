@@ -22,6 +22,22 @@ ${templateList}
 bunx shadcn add https://www.kairoui.online/r/<slug>.json
 \`\`\`
 
+## After installing (required for images)
+Templates load images from external hosts with the Next.js Image component. Add these remote patterns to the images config in your next.config.ts or images fail with an "Invalid src prop" error:
+
+\`\`\`ts
+images: {
+  remotePatterns: [
+    { protocol: "https", hostname: "images.unsplash.com" },
+    { protocol: "https", hostname: "i.postimg.cc" },
+    { protocol: "https", hostname: "cdn.prod.website-files.com" },
+    { protocol: "https", hostname: "picsum.photos" },
+    { protocol: "https", hostname: "pub-f170a2592d2c4a1485466404c36807be.r2.dev" },
+    { protocol: "https", hostname: "qclay.design" },
+  ],
+},
+\`\`\`
+
 ## Technical details
 - Framework: Next.js 16 with React 19
 - Styling: Tailwind CSS v4

@@ -29,6 +29,21 @@ const getTemplateFiles = unstable_cache(
   { revalidate: 3600 },
 );
 
+const IMAGE_SRC_RE = /src=["']https:\/\/([a-zA-Z0-9.-]+)\/([^"'\s]+)["']/g;
+
+function extractImageHosts(files: { content: string }[]): string[] {
+  const hosts = new Set<string>();
+  for (const file of files) {
+    let match: RegExpExecArray | null;
+    IMAGE_SRC_RE.lastIndex = 0;
+    while ((match = IMAGE_SRC_RE.exec(file.content))) {
+      if (/\.(mp4|webm|mov|ogg|mp3|wav)$/i.test(match[2])) continue;
+      hosts.add(match[1]);
+    }
+  }
+  return [...hosts].sort();
+}
+
 const REGISTRY_BASE = "https://www.kairoui.online";
 
 const TEMPLATE_META: Record<
@@ -212,6 +227,7 @@ export default async function TemplateDetailPage({
 
         <TemplateViewer
           files={filesWithHighlight}
+          imageHosts={extractImageHosts(filesWithHighlight)}
           command={`${REGISTRY_BASE}/r/${t.slug}.json`}
           src={`/templates/${t.slug}`}
           name={t.title}

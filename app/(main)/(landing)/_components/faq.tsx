@@ -18,6 +18,11 @@ const FAQS = [
       "Run: bunx shadcn add https://www.kairoui.online/r/<slug>.json — replacing <slug> with the template name. The shadcn CLI will prompt you before writing any files.",
   },
   {
+    question: "Why do I get an 'Invalid src prop' error after installing?",
+    answer:
+      "Templates load images from external hosts (Unsplash, Postimg, Webflow CDN, etc.). Add their remote patterns to the images config in your next.config.ts. Every template page includes a ready-to-paste snippet under the install command.",
+  },
+  {
     question: "Which frameworks do Kairo UI templates support?",
     answer:
       "Templates are built for Next.js 16 with React 19 and Tailwind CSS v4. They require a shadcn-initialized Next.js project.",
