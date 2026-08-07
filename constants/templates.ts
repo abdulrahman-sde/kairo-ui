@@ -11,16 +11,8 @@ import nextoThumbnail from "@/public/thumbnails/nexto.png";
 import triggerlyThumbnail from "@/public/thumbnails/triggerly.png";
 import endlessThumbnail from "@/public/thumbnails/endless.png";
 import nixoleThumbnail from "@/public/thumbnails/nixole.png";
+import essentialsThumbnail from "@/public/thumbnails/essentials.png";
 export const TEMPLATES: Template[] = [
-  {
-    slug: "essentials",
-    title: "Essentials",
-    description:
-      "A light e-commerce landing page for an apparel store with full-screen hero, featured products, shop-by-category grid, and CTA.",
-    color: "amber",
-    accent: "hsl(0 0% 8%)",
-    publishedAt: "2026-08-07",
-  },
   {
     slug: "endless",
     title: "Endless",
@@ -50,6 +42,16 @@ export const TEMPLATES: Template[] = [
     accent: "hsl(290 40% 72%)",
     thumbnail: xeroThumbnail,
     publishedAt: "2026-07-02",
+  },
+  {
+    slug: "essentials",
+    title: "Essentials",
+    description:
+      "A light e-commerce landing page for an apparel store with full-screen hero, featured products, shop-by-category grid, and CTA.",
+    color: "amber",
+    accent: "hsl(0 0% 8%)",
+    thumbnail: essentialsThumbnail,
+    publishedAt: "2026-08-07",
   },
 
   {
