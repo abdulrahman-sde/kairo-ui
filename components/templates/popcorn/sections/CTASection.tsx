@@ -65,6 +65,7 @@ export default function CTASection() {
             fill
             src="https://i.postimg.cc/7ZcgPgML/Untitled-(1).png"
             sizes="400px"
+            unoptimized
           />
         </div>
 

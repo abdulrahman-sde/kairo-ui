@@ -48,6 +48,7 @@ export default function Testimonials() {
                                         className="rounded-full object-cover"
                                         width={40}
                                         height={40}
+                                        unoptimized
                                     />
                                 </div>
                                 <p className="text-sm font-medium">

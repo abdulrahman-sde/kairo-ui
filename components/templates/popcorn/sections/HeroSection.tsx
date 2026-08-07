@@ -43,6 +43,7 @@ export default function HeroSection() {
             src="https://cdn.prod.website-files.com/66797c2909f9ec0b1ff1a767/69cd18cac294945d09e5dfaa_hero-portal-bg-new.webp"
             sizes="(max-width: 768px) 100vw, 1100px"
             priority
+            unoptimized
           />
         </div>
 
@@ -56,6 +57,7 @@ export default function HeroSection() {
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
             src="https://i.postimg.cc/mkGjLQ4W/Untitled.png"
+            unoptimized
           />
         </div>
         <div className="absolute right-[5%] z-[3] mt-12 h-full w-[45%] rotate-[5deg] md:right-[10%]">
@@ -66,6 +68,7 @@ export default function HeroSection() {
             fill
             sizes="(max-width: 768px) 50vw, 33vw"
             src="https://i.postimg.cc/7ZcgPgML/Untitled-(1).png"
+            unoptimized
           />
         </div>
       </div>

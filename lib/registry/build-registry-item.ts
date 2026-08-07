@@ -11,6 +11,20 @@ const ROOT = process.cwd();
 const SCHEMA = "https://ui.shadcn.com/schema/registry-item.json";
 
 const METAS: Record<string, TemplateMeta> = {
+  essentials: {
+    name: "essentials",
+    title: "Essentials",
+    description:
+      "A light e-commerce landing page for an apparel store with full-screen hero, featured products, shop-by-category grid, and CTA. Built with React, Shadcn/ui and Tailwind CSS v4.",
+    dependencies: [
+      "reicon-react",
+      "@base-ui/react",
+      "clsx",
+      "tailwind-merge",
+      "class-variance-authority",
+    ],
+    registryDependencies: [],
+  },
   orbit: {
     name: "orbit",
     title: "Orbit",

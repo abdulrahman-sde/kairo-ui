@@ -27,6 +27,7 @@ export default function HeroSection() {
                 width={2268}
                 height={1740}
                 priority
+                unoptimized
                 className="size-full object-cover object-top"
               />
             </div>
