@@ -12,7 +12,7 @@ import {
 } from "motion/react";
 import { useMedia } from "@/hooks/use-media";
 import { useTheme } from "next-themes";
-import { ChevronRight, Menu, Sun, X } from "reicon-react";
+import { ChevronRight, Sun } from "reicon-react";
 import { Moon } from "lucide-react";
 import { REPO_URL } from "@/constants/site";
 
@@ -61,7 +61,6 @@ const GithubButton = ({ className }: { className?: string }) => (
 );
 
 export const HeroHeader = () => {
-  const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { scrollY } = useScroll();
   const isLarge = useMedia("(min-width: 64rem)");
@@ -73,7 +72,7 @@ export const HeroHeader = () => {
   return (
     <header>
       <nav className="fixed top-3 z-20 w-full">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-5xl px-7 lg:px-6">
           <div
             className={cn(
               "relative flex items-center justify-between py-5 duration-300",
@@ -123,17 +122,18 @@ export const HeroHeader = () => {
             {/* Right: icon links + CTA (fades out on scroll) */}
             <div
               className={cn(
-                "hidden items-center gap-1 lg:flex duration-200",
-                isScrolled && "opacity-0 blur-xs pointer-events-none",
+                "flex items-center gap-0.5 duration-200 sm:gap-1",
+                isScrolled && "lg:opacity-0 lg:blur-xs lg:pointer-events-none",
               )}
             >
               <GithubButton />
               <ThemeToggle />
 
-              <div className="bg-border -ms-1 me-2 h-5 w-px" />
+              <div className="bg-border mx-1 h-5 w-px sm:-ms-1 sm:me-2" />
               <Button size="sm" className="pr-1.5" asChild>
                 <Link href="/templates">
-                  Browse Templates <ChevronRight className="opacity-50" />
+                  <span className="max-sm:hidden">Browse </span>Templates{" "}
+                  <ChevronRight className="opacity-50" />
                 </Link>
               </Button>
             </div>
@@ -216,49 +216,8 @@ export const HeroHeader = () => {
                 </AnimatePresence>
               </motion.div>
             )}
-
-            {/* Mobile menu toggle */}
-            <button
-              onClick={() => setMenuState(!menuState)}
-              aria-label={menuState ? "Close Menu" : "Open Menu"}
-              className="relative z-20 -m-2.5 block cursor-pointer p-2.5 lg:hidden"
-            >
-              {menuState ? (
-                <X className="size-5" />
-              ) : (
-                <Menu className="size-5" />
-              )}
-            </button>
           </div>
         </div>
-
-        {/* Mobile dropdown */}
-        {menuState && (
-          <div className="px-3 lg:hidden">
-            <div className="bg-background border-border shadow-foreground/6.5 mx-auto max-w-5xl rounded-2xl border p-2 shadow-lg">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMenuState(false)}
-                  className="text-muted-foreground hover:text-foreground block rounded-lg px-3 py-2 text-sm"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <div className="flex items-center gap-1 p-1">
-                <GithubButton />
-                <ThemeToggle />
-                <div className="flex-1" />
-                <Button size="sm" asChild>
-                  <Link href="/templates" onClick={() => setMenuState(false)}>
-                    Browse Templates
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
       </nav>
     </header>
   );
