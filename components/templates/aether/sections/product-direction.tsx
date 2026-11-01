@@ -15,7 +15,7 @@ export function ProductDirection() {
           <div className="py-16 max-lg:-mx-6 max-lg:overflow-hidden max-lg:pl-6">
             <div className="bg-card min-w-3xl ring-foreground/10 overflow-hidden rounded-2xl p-1 shadow-2xl shadow-indigo-900/35 ring-1 backdrop-blur">
               <div className="border-card relative aspect-video origin-top rounded-xl border-l-4">
-                <img alt="Aether console showing multi-region state sync" loading="lazy" width="2880" height="1920" decoding="async" className="object-top-left size-full object-cover" sizes="(max-width: 640px) 768px, (max-width: 768px) 1024px, (max-width: 1024px) 1280px, 1280px" srcSet="/aether/circle_un3f39.png 32w, /aether/circle_un3f39.png 48w, /aether/circle_un3f39.png 64w, /aether/circle_un3f39.png 96w, /aether/circle_un3f39.png 128w, /aether/circle_un3f39.png 256w, /aether/circle_un3f39.png 384w, /aether/circle_un3f39.png 640w, /aether/circle_un3f39.png 750w, /aether/circle_un3f39.png 828w, /aether/circle_un3f39.png 1080w, /aether/circle_un3f39.png 1200w, /aether/circle_un3f39.png 1920w, /aether/circle_un3f39.png 2048w, /aether/circle_un3f39.png 3840w" src="/aether/circle_un3f39.png"/>
+                <img alt="Aether console showing multi-region state sync" loading="lazy" width="2880" height="1920" decoding="async" className="object-top-left size-full object-cover" src="/aether/circle_un3f39.png"/>
               </div>
             </div>
           </div>

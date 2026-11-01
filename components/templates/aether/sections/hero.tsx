@@ -544,7 +544,7 @@ export function Hero() {
             </div>
           </div>
           <div className="aspect-72/41 lg:hidden">
-            <img alt="Aether dashboard showing live regional deployments and telemetry" fetchPriority="high" width="833" height="469" decoding="async" className="size-full object-cover" sizes="100vw" srcSet="/aether/hero-illustration_nl1gdn.png 640w, /aether/hero-illustration_nl1gdn.png 750w, /aether/hero-illustration_nl1gdn.png 828w, /aether/hero-illustration_nl1gdn.png 1080w, /aether/hero-illustration_nl1gdn.png 1200w, /aether/hero-illustration_nl1gdn.png 1920w, /aether/hero-illustration_nl1gdn.png 2048w, /aether/hero-illustration_nl1gdn.png 3840w" src="/aether/hero-illustration_nl1gdn.png"/>
+            <img alt="Aether dashboard showing live regional deployments and telemetry" fetchPriority="high" width="833" height="469" decoding="async" className="size-full object-cover" src="/aether/hero-illustration_nl1gdn.png"/>
           </div>
         </div>
       </div>
