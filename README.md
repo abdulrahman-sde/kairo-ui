@@ -1,6 +1,9 @@
-# ui.abdulrahmanasif.dev
+# Kairo UI
 
 A free, open-source landing page template library built with Next.js 16, React 19, and Tailwind v4. Browse templates, preview them live, and install any template into your project with a single shadcn command.
+
+- **Site:** https://ui.abdulrahmanasif.dev
+- **GitHub:** https://github.com/abdulrahman-sde/kairo-ui
 
 ## Templates
 
@@ -27,8 +30,8 @@ Replace `<slug>` with any template name (e.g. `nova`, `glaze`, `aurora`).
 ## Run locally
 
 ```bash
-bun install
-bun dev        # http://localhost:3000
+npm install
+npm run dev    # http://localhost:3000
 ```
 
 ## Stack

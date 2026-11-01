@@ -45,7 +45,7 @@ images: {
 - License: MIT
 
 ## Creator
-Abdul Rahman Asif — @abdurahmanasif on Twitter/X
+Abdul Rahman Asif (@abdurahmanasif on Twitter/X)
 `;
 
   return new Response(content, {

@@ -1,0 +1,270 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+   Tokens — shadcn/ui contract (:root / .dark)
+   Every colour a section uses resolves to one of these variables, so the whole
+   page can be re-skinned by editing this block only.
+   --------------------------------------------------------------------------- */
+:root {
+  --background: var(--color-zinc-100);
+  --foreground: var(--color-zinc-950);
+  --card: var(--color-white);
+  --card-foreground: var(--color-zinc-950);
+  --popover: var(--color-white);
+  --popover-foreground: var(--color-zinc-950);
+  --primary: var(--color-indigo-600);
+  --primary-foreground: var(--color-white);
+  --secondary: var(--color-sky-100);
+  --secondary-foreground: var(--color-sky-600);
+  --muted: var(--color-zinc-100);
+  --muted-foreground: var(--color-zinc-600);
+  --accent: var(--color-zinc-100);
+  --accent-foreground: var(--color-zinc-800);
+  --destructive: var(--color-red-600);
+  --destructive-foreground: var(--color-white);
+  --border: var(--color-zinc-200);
+  --input: var(--color-zinc-200);
+  --ring: var(--color-indigo-500);
+  --chart-1: var(--color-blue-500);
+  --chart-2: var(--color-indigo-500);
+  --chart-3: var(--color-purple-500);
+  --chart-4: var(--color-indigo-400);
+  --chart-5: var(--color-red-500);
+  --radius: 0.625rem;
+
+  /* Template-specific: the hairline used by the hero/bento illustrations */
+  --illustration: var(--color-white);
+  --border-illustration: color-mix(
+    in oklab,
+    var(--color-zinc-950) 7.5%,
+    transparent
+  );
+}
+
+.dark {
+  --background: var(--color-zinc-950);
+  --foreground: var(--color-white);
+  --card: oklch(0.17 0.004 286);
+  --card-foreground: var(--color-white);
+  --popover: var(--color-zinc-900);
+  --popover-foreground: var(--color-white);
+  --primary: var(--color-indigo-400);
+  --primary-foreground: var(--color-zinc-950);
+  --secondary: var(--color-zinc-800);
+  --secondary-foreground: var(--color-white);
+  --muted: var(--color-zinc-800);
+  --muted-foreground: var(--color-zinc-400);
+  --accent: var(--color-zinc-800);
+  --accent-foreground: var(--color-white);
+  --destructive: var(--color-red-700);
+  --border: color-mix(in srgb, #fff 10%, transparent);
+  --input: var(--color-zinc-800);
+  --ring: var(--color-indigo-400);
+  --illustration: var(--color-zinc-900);
+  --border-illustration: color-mix(in srgb, #fff 4%, transparent);
+}
+
+/* Fonts are `inline` because next/font defines its variables on <body>,
+   below :root, where a plain @theme value would resolve to nothing. */
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-instrument-sans), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Not `inline`: sections re-point --color-primary / --color-border-illustration
+   on individual elements (e.g. `[--color-primary:var(--color-indigo-500)]`),
+   which only works while utilities read the --color-* variable itself. */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-illustration: var(--illustration);
+  --color-border-illustration: var(--border-illustration);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-hue-rotate: hue-rotate 4s infinite;
+  --animate-scan: scan 3s infinite;
+  --animate-enter-from-right: enter-from-right 0.2s ease-out;
+  --animate-enter-from-left: enter-from-left 0.2s ease-out;
+  --animate-exit-to-right: exit-to-right 0.16s ease-out;
+  --animate-exit-to-left: exit-to-left 0.16s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+  --animate-scale-out: scale-out 0.16s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height, var(--accordion-panel-height));
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height, var(--accordion-panel-height));
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes hue-rotate {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
+  @keyframes scan {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes enter-from-right {
+    from {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes enter-from-left {
+    from {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes exit-to-right {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(1rem);
+    }
+  }
+  @keyframes exit-to-left {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+  }
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: rotateX(-8deg) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: rotateX(0) scale(1);
+    }
+  }
+  @keyframes scale-out {
+    from {
+      opacity: 1;
+      transform: rotateX(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: rotateX(-8deg) scale(0.96);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Animated SVG beams (integrations / bento connectors) */
+@keyframes beam-move {
+  to {
+    stroke-dashoffset: -780px;
+  }
+}
+
+@keyframes beam-move-down {
+  to {
+    stroke-dashoffset: 780px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-"] {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

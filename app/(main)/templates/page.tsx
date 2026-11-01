@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/shared/json-ld";
 import { TEMPLATES } from "@/constants/templates";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Landing Page Templates — Browse All",
+  title: "Free Next.js Landing Page Templates | Browse All",
   description:
     "Browse free, MIT-licensed Next.js 16 landing page templates built with Tailwind CSS v4. SaaS, AI tools, mobile apps, and more. Install any template in one command via shadcn.",
   alternates: {

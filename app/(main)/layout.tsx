@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Lora, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { HeroHeader } from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -24,7 +25,7 @@ const fontMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.kairoui.online"),
   title: {
-    default: "Free Next.js Landing Page Templates — Kairo UI",
+    default: "Free Next.js Landing Page Templates | Kairo UI",
     template: "%s | Kairo UI",
   },
   description:
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   creator: "Abdul Rahman Asif",
 
   openGraph: {
-    title: "Free Next.js Landing Page Templates — Kairo UI",
+    title: "Free Next.js Landing Page Templates | Kairo UI",
     description:
       "Free, MIT-licensed Next.js 16 templates. Install any template with one command.",
     url: "https://www.kairoui.online",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Kairo UI — Free Next.js Landing Page Templates",
+        alt: "Kairo UI: Free Next.js Landing Page Templates",
       },
     ],
     siteName: "Kairo UI",
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Next.js Landing Page Templates — Kairo UI",
+    title: "Free Next.js Landing Page Templates | Kairo UI",
     description:
       "Free, MIT-licensed Next.js 16 templates. Install any template with one command.",
     images: ["/twitter-image"],
@@ -80,9 +81,10 @@ export default function MainLayout({
       <body
         className={`${fontSans.variable} ${fontSerif.variable} ${fontMono.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <HeroHeader />
           {children}
+          <Footer />
 
           <GoogleAnalytics gaId="G-TKTY9S1N38" />
         </ThemeProvider>

@@ -3,14 +3,23 @@ import type { StaticImageData } from "next/image";
 export type TemplateColor = "mint" | "amber" | "zinc" | "slate" | "pink" | "green" | "indigo" | "purple";
 export type TemplateVariant = "northwind" | "halcyon" | "atelier";
 
+export type TemplateTag =
+  | "saas"
+  | "ai"
+  | "health"
+  | "mobile"
+  | "ecommerce"
+  | "agency";
+
 export interface Template {
   slug: string;
   title: string;
   description: string;
   color: TemplateColor;
   accent: string;
+  tags: TemplateTag[];
   /** Path relative to /public, e.g. "/previews/notio.jpg". 1280×800 (16/10). */
   thumbnail?: StaticImageData;
-  /** ISO date the template was added — drives the "New" chip & sort. */
+  /** ISO date the template was added, drives the "New" chip & sort. */
   publishedAt: string;
 }

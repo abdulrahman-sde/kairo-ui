@@ -10,6 +10,7 @@ import {
   ArrowUpRight,
   BookOpen,
 } from "lucide-react";
+import { Download, Setting } from "reicon-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -378,7 +379,7 @@ function InstallGuide({ imageHosts }: { imageHosts: string[] }) {
           <DialogTitle>Installation guide</DialogTitle>
           <DialogDescription>
             {imageHosts.length > 0
-              ? "Two steps — install the template, then allow its images."
+              ? "Two steps: install the template, then allow its images."
               : "Install the template in your Next.js project."}
           </DialogDescription>
         </DialogHeader>
@@ -386,23 +387,19 @@ function InstallGuide({ imageHosts }: { imageHosts: string[] }) {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-primary-foreground">
-                1
-              </span>
+              <span className="flex size-6 shrink-0 items-center justify-center rounded-[3px] border border-border"><Download className="size-3.5 text-primary" /></span>
               <p className="text-sm font-medium">Install the template</p>
             </div>
-            <p className="text-xs text-muted-foreground pl-7">
-              Copy the install command at the top — that matches your package
-              manager — and run it inside your Next.js project.
+            <p className="text-xs text-muted-foreground pl-8">
+              Copy the install command at the top (it matches your package
+              manager) and run it inside your Next.js project.
             </p>
           </div>
 
           {imageHosts.length > 0 && (
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-primary-foreground">
-                  2
-                </span>
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-[3px] border border-border"><Setting className="size-3.5 text-primary" /></span>
                 <p className="text-sm font-medium">
                   Add these remote patterns to next.config.ts
                 </p>
@@ -422,7 +419,7 @@ function InstallGuide({ imageHosts }: { imageHosts: string[] }) {
                   {configCopied ? "Copied" : "Copy"}
                 </button>
               </div>
-              <p className="text-xs text-muted-foreground pl-7">
+              <p className="text-xs text-muted-foreground pl-8">
                 Paste this inside{" "}
                 <code className="font-mono text-[11px]">nextConfig</code> to
                 avoid the{" "}

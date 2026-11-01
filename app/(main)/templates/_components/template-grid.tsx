@@ -1,14 +1,35 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { MoreFilters } from "@/app/(main)/templates/_components/more-filters";
 import { Button } from "@/components/ui/button";
-import {
-  TemplateMock,
-  colorToVariant,
-} from "@/components/shared/template-mock";
+import { TemplateCard } from "@/components/shared/template-card";
 import { TEMPLATES, TEMPLATE_SORTS } from "@/constants/templates";
 import type { Template } from "@/types/template";
 import type { TemplateSort } from "@/constants/templates";
+
+const primarySorts = TEMPLATE_SORTS.filter((s) => !s.secondary);
+const secondarySorts = TEMPLATE_SORTS.filter((s) => s.secondary);
+
+function SortChip({
+  sort,
+  active,
+}: {
+  sort: (typeof TEMPLATE_SORTS)[number];
+  active: boolean;
+}) {
+  return (
+    <Button
+      variant={active ? "default" : "ghost"}
+      size="sm"
+      asChild
+      aria-current={active ? "page" : undefined}
+      className={active ? "px-4" : "px-4 text-muted-foreground"}
+    >
+      <Link href={sort.slug === "all" ? "/templates" : `/templates/${sort.slug}`}>
+        {sort.label}
+      </Link>
+    </Button>
+  );
+}
 
 export default function TemplateGrid({
   templates = TEMPLATES,
@@ -20,7 +41,7 @@ export default function TemplateGrid({
   return (
     <div className="pt-32 pb-28 px-4">
       {/* Page header */}
-      <div className="mb-12">
+      <div className="mb-16">
         <h1 className="font-serif text-[2.6rem] font-medium leading-[1.1] tracking-tight">
           All templates
         </h1>
@@ -30,88 +51,25 @@ export default function TemplateGrid({
           your project.
         </p>
 
-        {/* Sort chips */}
+        {/* Sort chips: secondary filters live in a floating menu */}
         <div className="mt-6 flex flex-wrap items-center gap-2">
-          {TEMPLATE_SORTS.map((sort) => {
-            const active = sort.slug === activeSort;
-            return (
-              <Button
-                key={sort.slug}
-                variant={active ? "default" : "ghost"}
-                size="sm"
-                asChild
-                aria-current={active ? "page" : undefined}
-                className={active ? "px-4" : "px-4 text-muted-foreground"}
-              >
-                <Link
-                  href={
-                    sort.slug === "all"
-                      ? "/templates"
-                      : `/templates/${sort.slug}`
-                  }
-                >
-                  {sort.label}
-                </Link>
-              </Button>
-            );
-          })}
+          {primarySorts.map((sort) => (
+            <SortChip
+              key={sort.slug}
+              sort={sort}
+              active={sort.slug === activeSort}
+            />
+          ))}
+          <MoreFilters sorts={secondarySorts} activeSlug={activeSort} />
         </div>
 
-        <div className="border-border mt-8 h-px w-full" />
+        <div className="border-border mt-10 h-px w-full" />
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {templates.map((t) => (
-          <Link
-            key={t.slug}
-            href={`/template/${t.slug}`}
-            className="group flex flex-col overflow-hidden rounded-2xl bg-card ring-1 ring-border"
-          >
-            {/* Thumbnail with inner double-bezel */}
-            <div className="bg-muted p-3" style={{ aspectRatio: "16/10" }}>
-              {/* Outer bezel shell */}
-              <div className="h-full rounded-xl bg-foreground/10 p-1.5 ring-1 ring-foreground/10">
-                {/* Inner core — image clips here */}
-                <div className="relative h-full w-full overflow-hidden rounded-[calc(0.75rem-3px)]">
-                  {t.thumbnail ? (
-                    <Image
-                      src={t.thumbnail}
-                      alt={t.title}
-                      fill
-                      placeholder="blur"
-                      className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.03]"
-                      sizes="(max-width: 640px) 100vw, 600px"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 origin-center scale-[1.15] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.2]">
-                      <TemplateMock
-                        accent={t.accent}
-                        variant={colorToVariant(t.color)}
-                      />
-                    </div>
-                  )}
-
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <span className="flex items-center gap-1.5 rounded-full bg-background px-4 py-2 text-xs font-medium ring-1 ring-border shadow-sm">
-                      View template
-                      <span className="flex size-5 items-center justify-center rounded-full bg-foreground/8 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                        <ArrowUpRight className="size-2.5" />
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="border-t border-border px-4 py-3">
-              <p className="truncate text-sm font-medium text-foreground">
-                {t.title}
-              </p>
-            </div>
-          </Link>
+          <TemplateCard key={t.slug} template={t} />
         ))}
       </div>
     </div>

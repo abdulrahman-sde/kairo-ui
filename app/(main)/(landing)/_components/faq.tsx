@@ -10,12 +10,12 @@ const FAQS = [
   {
     question: "Are Kairo UI templates really free?",
     answer:
-      "Yes. All templates are MIT-licensed — free for personal and commercial use. No signup, no attribution required.",
+      "Yes. All templates are MIT-licensed. Free for personal and commercial use. No signup, no attribution required.",
   },
   {
     question: "How do I install a Kairo UI template?",
     answer:
-      "Run: bunx shadcn add https://www.kairoui.online/r/<slug>.json — replacing <slug> with the template name. The shadcn CLI will prompt you before writing any files.",
+      "Run: bunx shadcn add https://www.kairoui.online/r/<slug>.json, replacing <slug> with the template name. The shadcn CLI will prompt you before writing any files.",
   },
   {
     question: "Why do I get an 'Invalid src prop' error after installing?",
@@ -52,7 +52,7 @@ export default function Faq() {
     <section className="py-24">
       <JsonLd data={faqSchema} />
       <div className="mx-auto max-w-2xl px-6">
-        <h2 className="font-serif text-4xl font-medium text-center mb-12">
+        <h2 className="font-serif text-4xl font-medium tracking-tight text-center mb-12">
           Frequently asked questions
         </h2>
         <Accordion className="divide-y divide-border">
