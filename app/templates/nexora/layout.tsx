@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/components/templates/nexora/globals.css";
 
+// Inter is a variable font: omit `weight` so next/font loads one variable
+// file per subset instead of a separate static file for each weight.
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,9 +23,9 @@ export default function NexoraLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased bg-white text-[#0f172a]`}
+        className="font-sans antialiased bg-white text-[#0f172a]"
       >
         {children}
       </body>
