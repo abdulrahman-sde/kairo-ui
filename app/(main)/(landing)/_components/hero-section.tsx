@@ -8,7 +8,7 @@ import { HeroDemo } from "@/app/(main)/(landing)/_components/hero-demo";
 export default function HeroSection() {
   return (
     <main>
-      <section className="mt-1 mb-12 p-2 pb-0 md:mt-2 md:mb-20 md:p-4 md:pb-0">
+      <section className="mt-1 mb-12 p-1.5 pb-0 md:mt-2 md:mb-20 md:p-3.5 md:pb-0">
         <div className="hero-frame relative overflow-hidden rounded-xl shadow-xl md:rounded-2xl lg:rounded-3xl">
           <header className="relative z-10 flex min-h-[min(34rem,78svh)] flex-col items-center justify-center px-5 pt-20 pb-10 text-center sm:block sm:min-h-0 sm:px-6 sm:pt-32 sm:pb-16">
             <Link
