@@ -36,7 +36,7 @@ export function Integrations() {
           <div className="@3xl:col-span-2 mt-auto h-fit max-lg:-mx-6 max-lg:overflow-hidden max-lg:pb-16 max-lg:pl-6 max-lg:pt-12">
             <div className="bg-card min-w-3xl ring-foreground/10 overflow-hidden rounded-2xl p-1 shadow-2xl shadow-indigo-900/35 ring-1 backdrop-blur">
               <div className="relative aspect-video origin-top rounded-xl">
-                <img alt="Aether console showing a deployed microVM workload" loading="lazy" width="1520" height="1013" decoding="async" className="object-top-left size-full object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1520px" srcSet="/aether/circle-4_lkhxqm.png 640w, /aether/circle-4_lkhxqm.png 750w, /aether/circle-4_lkhxqm.png 828w, /aether/circle-4_lkhxqm.png 1080w, /aether/circle-4_lkhxqm.png 1200w, /aether/circle-4_lkhxqm.png 1920w, /aether/circle-4_lkhxqm.png 2048w, /aether/circle-4_lkhxqm.png 3840w" src="/aether/circle-4_lkhxqm.png"/>
+                <img alt="Aether console showing a deployed microVM workload" loading="lazy" width="1520" height="1013" decoding="async" className="object-top-left size-full object-cover" src="/aether/circle-4_lkhxqm.png"/>
               </div>
             </div>
           </div>

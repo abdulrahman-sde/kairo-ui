@@ -173,11 +173,23 @@ function fileType(targetPath: string): RegistryItemType {
   return "registry:component";
 }
 
+const CLOUD_BASE = "https://www.kairoui.online";
+const ASSET_DIRS = "aether|aeris|vitalis";
+
+// Rewrites site-root asset paths to absolute URLs so installed templates keep
+// working. Matches a path after a quote, whitespace, comma or "(" so every
+// entry of an `srcSet="a.png 1x, b.png 2x"` list is rewritten, not only the
+// first one.
 function rewriteCloudAssets(content: string): string {
   return content
-    .replace(/(["'])\/(aether|aeris|vitalis)\//g, "$1https://www.kairoui.online/$2/")
-    .replace(/url\(\/(aether|aeris|vitalis)\//g, "url(https://www.kairoui.online/$1/")
-    .replace(/(["'])\/hero-illustration\//g, "$1https://www.kairoui.online/aeris/hero-illustration/");
+    .replace(
+      new RegExp(`(["'\\s,(])/(${ASSET_DIRS})/`, "g"),
+      `$1${CLOUD_BASE}/$2/`,
+    )
+    .replace(
+      /(["'\s,(])\/hero-illustration\//g,
+      `$1${CLOUD_BASE}/aeris/hero-illustration/`,
+    );
 }
 
 export async function buildRegistryItem(slug: string): Promise<RegistryItem> {
