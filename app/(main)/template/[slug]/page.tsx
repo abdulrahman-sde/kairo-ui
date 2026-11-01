@@ -9,17 +9,30 @@ import { JsonLd } from "@/components/shared/json-ld";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const getTemplateFiles = unstable_cache(
   async (slug: string) => {
     const registryItem = await buildRegistryItem(slug);
     return Promise.all(
       (registryItem.files || []).map(async (file) => {
         const ext = file.path.split(".").pop() || "tsx";
-        const html = await highlight(file.content as string, ext);
+        const content = file.content as string;
+        const html =
+          content.length > 20000
+            ? `<pre class="shiki"><code>${escapeHtml(content)}</code></pre>`
+            : await highlight(content, ext);
         return {
           path: file.path,
           target: file.target || file.path,
-          content: file.content as string,
+          content,
           html,
         };
       }),
@@ -50,6 +63,21 @@ const TEMPLATE_META: Record<
   string,
   { keyword: string; category: string; sections: string }
 > = {
+  aether: {
+    keyword: "cloud infrastructure landing page template",
+    category: "Developer Tools",
+    sections: "hero, integrations, bento grid, telemetry, reliability cards, testimonials carousel, CTA, and footer sections",
+  },
+  aeris: {
+    keyword: "AI workspace landing page template",
+    category: "AI",
+    sections: "animated hero workspace, benchmark charts, capabilities, privacy vault, CTA, and footer sections",
+  },
+  vitalis: {
+    keyword: "health app landing page template",
+    category: "Health",
+    sections: "hero, feature tabs, key benefits, monthly/yearly pricing toggle, testimonials slider, CTA, and footer sections",
+  },
   nova: {
     keyword: "SaaS landing page template",
     category: "SaaS",
@@ -135,13 +163,13 @@ export async function generateMetadata({
   const sections = meta?.sections ?? t.description;
 
   return {
-    title: `${t.title} — Free ${keyword} for Next.js`,
+    title: `${t.title} | Free ${keyword} for Next.js`,
     description: `${t.title} is a free, MIT-licensed ${keyword} built with Next.js 16 and Tailwind CSS v4. Includes ${sections}. Install in one command with the shadcn CLI.`,
     alternates: {
       canonical: `https://www.kairoui.online/template/${slug}`,
     },
     openGraph: {
-      title: `${t.title} — Free ${keyword}`,
+      title: `${t.title} | Free ${keyword}`,
       description: `Free MIT-licensed template. Includes ${sections}. One-command install via shadcn CLI.`,
       url: `https://www.kairoui.online/template/${slug}`,
       siteName: "Kairo UI",
@@ -151,13 +179,13 @@ export async function generateMetadata({
           url: `https://www.kairoui.online/thumbnails/${slug}.png`,
           width: 1200,
           height: 630,
-          alt: `${t.title} — Free ${keyword} preview`,
+          alt: `${t.title}: Free ${keyword} preview`,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${t.title} — Free ${keyword}`,
+      title: `${t.title} | Free ${keyword}`,
       description: `Free Next.js template. Install with shadcn CLI.`,
       images: [`https://www.kairoui.online/thumbnails/${slug}.png`],
     },
@@ -178,7 +206,7 @@ export default async function TemplateDetailPage({
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
-    name: `${t.title} — Next.js Landing Page Template`,
+    name: `${t.title}: Next.js Landing Page Template`,
     description: t.description,
     url: `https://www.kairoui.online/template/${slug}`,
     codeRepository: "https://github.com/abdulrahmanasif/kairoui",
@@ -246,13 +274,13 @@ export default async function TemplateDetailPage({
               <p className="text-muted-foreground leading-relaxed">
                 {t.title} is a free, open-source {keyword} built with Next.js
                 and Tailwind CSS v4. It includes {sections}. Released under the
-                MIT license — use it in personal or commercial projects with no
+                MIT license. Use it in personal or commercial projects with no
                 restrictions.
               </p>
               <dl className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <dt className="font-medium text-foreground">License</dt>
-                  <dd className="text-muted-foreground">MIT — free forever</dd>
+                  <dd className="text-muted-foreground">MIT, free forever</dd>
                 </div>
                 <div>
                   <dt className="font-medium text-foreground">Framework</dt>

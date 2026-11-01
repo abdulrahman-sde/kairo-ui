@@ -11,6 +11,33 @@ const ROOT = process.cwd();
 const SCHEMA = "https://ui.shadcn.com/schema/registry-item.json";
 
 const METAS: Record<string, TemplateMeta> = {
+  aether: {
+    name: "aether",
+    title: "Aether Cloud",
+    description:
+      "A high-performance cloud runtime & developer infrastructure landing featuring animated SVG beam curves, 4 interactive Bento cards, IDE code blocks, customer testimonials, and sleek responsive footer.",
+    dependencies: ["lucide-react", "tw-animate-css"],
+  },
+  aeris: {
+    name: "aeris",
+    title: "Aeris Workspace",
+    description:
+      "An autonomous AI research & synthesis workspace landing page featuring interactive hero workspace illustration, multi-hop benchmark charts, Rive card animations, and 3D icons grid.",
+    dependencies: [
+      "@rive-app/react-canvas",
+      "clsx",
+      "motion",
+      "tailwind-merge",
+      "tw-animate-css",
+    ],
+  },
+  vitalis: {
+    name: "vitalis",
+    title: "Vitalis Health",
+    description:
+      "A health span & longevity companion app landing page featuring interactive feature tabs, dynamic monthly/yearly pricing switcher, 6-card testimonial slider, and 14 complete sections.",
+    dependencies: ["tw-animate-css"],
+  },
   essentials: {
     name: "essentials",
     title: "Essentials",
@@ -146,6 +173,13 @@ function fileType(targetPath: string): RegistryItemType {
   return "registry:component";
 }
 
+function rewriteCloudAssets(content: string): string {
+  return content
+    .replace(/(["'])\/(aether|aeris|vitalis)\//g, "$1https://www.kairoui.online/$2/")
+    .replace(/url\(\/(aether|aeris|vitalis)\//g, "url(https://www.kairoui.online/$1/")
+    .replace(/(["'])\/hero-illustration\//g, "$1https://www.kairoui.online/aeris/hero-illustration/");
+}
+
 export async function buildRegistryItem(slug: string): Promise<RegistryItem> {
   const meta = METAS[slug] ?? { name: slug, title: slug };
 
@@ -160,11 +194,12 @@ export async function buildRegistryItem(slug: string): Promise<RegistryItem> {
       path.basename(rel) === "globals.css"
         ? "app/globals.css"
         : `components/templates/${slug}/${rel}`;
+    const rawContent = fs.readFileSync(path.join(componentsDir, rel), "utf-8");
     files.push({
       path: `components/templates/${slug}/${rel}`,
       type: fileType(target),
       target,
-      content: fs.readFileSync(path.join(componentsDir, rel), "utf-8"),
+      content: rewriteCloudAssets(rawContent),
     });
   }
 
@@ -189,7 +224,7 @@ export async function buildRegistryItem(slug: string): Promise<RegistryItem> {
       path: `app/templates/${slug}/${rel}`,
       type: fileType(target),
       target,
-      content,
+      content: rewriteCloudAssets(content),
     });
   }
 

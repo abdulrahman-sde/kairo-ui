@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Installed templates fetch their assets (Rive files, images) cross-origin
+  // from this site, so the template asset folders must allow it.
+  async headers() {
+    return ["aether", "aeris", "vitalis", "hero-illustration"].map((dir) => ({
+      source: `/${dir}/:path*`,
+      headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+    }));
+  },
   images: {
     remotePatterns: [
       {
@@ -38,6 +46,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "qclay.design",
+      },
+      {
+        protocol: "https",
+        hostname: "www.kairoui.online",
+      },
+      {
+        protocol: "https",
+        hostname: "kairoui.online",
       },
     ],
   },
