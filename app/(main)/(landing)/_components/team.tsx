@@ -7,12 +7,12 @@ export default function Team() {
     <section id="about" className="bg-background py-24">
       <div className="mx-auto max-w-3xl px-6">
         <div className="space-y-4">
-          <h2 className="text-balance font-serif text-4xl font-medium">
+          <h2 className="text-balance font-serif text-4xl font-medium tracking-tight">
             Made by one person
           </h2>
           <p className="text-muted-foreground text-balance">
             Kairo UI is a solo project. The templates here are built by me or
-            inspired and adapted from designs found around the internet — all
+            inspired and adapted from designs found around the internet. All
             free to use, no accounts, no fees.
           </p>
         </div>
@@ -43,7 +43,7 @@ export default function Team() {
                 </p>
               </div>
               <p className="text-muted-foreground text-sm">
-                Full-stack engineer who builds and shares free templates —
+                Full-stack engineer who builds and shares free templates:
                 originals and internet-inspired, all open to use.{" "}
                 <Link
                   href="https://abdulrahmanasif.dev"

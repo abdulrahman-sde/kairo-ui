@@ -9,6 +9,9 @@ import {
 } from "@/constants/templates";
 import type { TemplateSort } from "@/constants/templates";
 
+// Every filter is pre-rendered at build time; unknown slugs 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return TEMPLATE_SORTS.filter((sort) => sort.slug !== "all").map((sort) => ({
     sort: sort.slug,
@@ -25,14 +28,14 @@ export async function generateMetadata({
   const label = option?.title ?? "All templates";
 
   return {
-    title: `Free Next.js Landing Page Templates — ${label}`,
+    title: `Free Next.js Landing Page Templates | ${label}`,
     description:
       "Browse free, MIT-licensed Next.js landing page templates built with Tailwind CSS v4. Install any template in one command via shadcn.",
     alternates: {
       canonical: `https://www.kairoui.online/templates/${option?.slug === "all" ? "" : option?.slug}`,
     },
     openGraph: {
-      title: `Free Next.js Landing Page Templates | Kairo UI — ${label}`,
+      title: `Free Next.js Landing Page Templates | Kairo UI | ${label}`,
       description:
         "Free, MIT-licensed Next.js templates for SaaS, AI products, mobile apps, and more.",
       url: `https://www.kairoui.online/templates/${option?.slug === "all" ? "" : option?.slug}`,
@@ -58,7 +61,7 @@ export default async function TemplatesSortPage({
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `Free Next.js Landing Page Templates — ${option.title}`,
+    name: `Free Next.js Landing Page Templates | ${option.title}`,
     description:
       "Free, MIT-licensed Next.js 16 landing page templates built with Tailwind CSS v4.",
     url: `https://www.kairoui.online/templates/${option.slug}`,

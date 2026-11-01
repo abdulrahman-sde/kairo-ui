@@ -2,7 +2,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
+:root,
+.light {
   --background: oklch(0.9911 0 0);
   --foreground: oklch(0.1994 0.047 270.6494);
   --card: oklch(0.9851 0 0);
@@ -65,6 +66,11 @@
   --shadow-2xl: -50px 2px 0px -50px hsl(222.7751 100% 59.0196% / 0);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
+}
+
+/* Re-applies light tokens inside a dark page (hero over the sky image). */
+.light {
+  color: var(--foreground);
 }
 
 .dark {
@@ -202,3 +208,222 @@
 .dark .shiki-wrapper .shiki span {
   color: var(--shiki-dark);
 }
+
+/* Landing hero */
+.hero-frame {
+  isolation: isolate;
+}
+.hero-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url(/hero/sky.webp) center / cover no-repeat;
+}
+.dark .hero-frame::before {
+  filter: invert(1) hue-rotate(180deg) brightness(0.7) saturate(1.2);
+}
+.hero-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--foreground) 8%, transparent);
+}
+/* Template gallery card shell */
+.tpl-card-surface {
+  background: oklch(0.961 0.0029 264.5419);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.9),
+    inset 0 -1px 2px oklch(0 0 0 / 0.06),
+    0 0 0 1px oklch(0 0 0 / 0.06),
+    0 10px 24px -12px oklch(0 0 0 / 0.18);
+}
+.dark .tpl-card-surface {
+  background: oklch(0.2807 0.0039 264.5029);
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    inset 0 -1px 2px oklch(0 0 0 / 0.35),
+    0 0 0 1px oklch(0 0 0 / 0.5),
+    0 10px 24px -12px oklch(0 0 0 / 0.6);
+}
+.tpl-card-panel {
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.08),
+    0 6px 14px -4px oklch(0 0 0 / 0.14);
+}
+.dark .tpl-card-panel {
+  box-shadow:
+    0 1px 2px oklch(0 0 0 / 0.5),
+    0 8px 16px -4px oklch(0 0 0 / 0.55);
+}
+
+.hero-dot-close { background: oklch(0.7 0.19 25); }
+.hero-dot-min { background: oklch(0.82 0.16 85); }
+.hero-dot-max { background: oklch(0.75 0.18 145); }
+
+/* Hero demo: fixed 1000x600 design, scaled down on small screens */
+.hero-stage {
+  --hero-s: 0.36;
+  position: relative;
+  height: calc(530px * var(--hero-s));
+  overflow: hidden;
+}
+@media (min-width: 640px) { .hero-stage { --hero-s: 0.6; } }
+@media (min-width: 768px) { .hero-stage { --hero-s: 0.72; } }
+@media (min-width: 1024px) { .hero-stage { --hero-s: 0.9; } }
+@media (min-width: 1280px) { .hero-stage { --hero-s: 1; } }
+.hero-win {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  display: flex;
+  width: 1000px;
+  height: 640px;
+  transform: translateX(-50%) scale(var(--hero-s));
+  transform-origin: top center;
+  border-radius: 1rem 1rem 0 0;
+  background: color-mix(in oklch, var(--card) 78%, transparent);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 0 0 0.5px color-mix(in oklch, var(--foreground) 14%, transparent),
+    0 30px 60px -20px color-mix(in oklch, var(--foreground) 30%, transparent);
+  overflow: hidden;
+  transition: opacity 0.8s ease;
+}
+.hero-pin {
+  background: color-mix(in oklch, var(--foreground) 7%, transparent);
+  box-shadow: inset 0 3px 5px color-mix(in oklch, var(--foreground) 6%, transparent);
+  outline: 0.5px solid color-mix(in oklch, var(--foreground) 10%, transparent);
+}
+.hero-hairline { border-top: 0.5px solid color-mix(in oklch, var(--foreground) 12%, transparent); }
+.hero-tab-selected {
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow:
+    0 0 0 0.5px color-mix(in oklch, var(--foreground) 14%, transparent),
+    0 4px 8px -2px color-mix(in oklch, var(--foreground) 10%, transparent);
+}
+.hero-panel {
+  background:
+    radial-gradient(60% 40% at 50% 0%, color-mix(in oklch, var(--primary) 7%, transparent), transparent 80%),
+    var(--background);
+  border-radius: 19px 0 0 0;
+  box-shadow: 0 0 0 0.5px color-mix(in oklch, var(--foreground) 14%, transparent);
+}
+.hero-mini { outline: 0.5px solid color-mix(in oklch, var(--foreground) 14%, transparent); }
+.hero-omnibox {
+  background: var(--card);
+  box-shadow:
+    0 0 0 0.5px color-mix(in oklch, var(--foreground) 14%, transparent),
+    0 8px 16px -4px color-mix(in oklch, var(--foreground) 12%, transparent);
+}
+.hero-kbd { background: color-mix(in oklch, var(--foreground) 8%, transparent); }
+.hero-segment { background: color-mix(in oklch, var(--foreground) 8%, transparent); }
+.hero-segment-on {
+  background: var(--card);
+  box-shadow: 0 0 0 0.5px color-mix(in oklch, var(--foreground) 14%, transparent), 0 1px 2px oklch(0 0 0 / 0.08);
+}
+.hero-card {
+  background: var(--card);
+  box-shadow:
+    0 0 0 0.5px color-mix(in oklch, var(--foreground) 14%, transparent),
+    0 4px 8px -2px color-mix(in oklch, var(--foreground) 8%, transparent);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+.hero-card.is-hover { transform: translateY(-3px); box-shadow: 0 0 0 0.5px color-mix(in oklch, var(--foreground) 20%, transparent), 0 12px 20px -6px color-mix(in oklch, var(--foreground) 16%, transparent); }
+.hero-card.is-selected {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1.5px var(--primary), 0 0 0 5px color-mix(in oklch, var(--primary) 16%, transparent);
+}
+.hero-shot { border-bottom: 0.5px solid color-mix(in oklch, var(--foreground) 10%, transparent); }
+.hero-copy {
+  position: relative;
+  display: inline-grid;
+  width: 56px;
+  justify-items: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 500;
+  background: var(--foreground);
+  color: var(--background);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.25s ease, transform 0.25s ease, background-color 0.2s ease;
+}
+.hero-copy.is-on { opacity: 1; transform: scale(1); }
+.hero-copy.is-pressed { transform: scale(0.92); }
+.hero-copy-idle, .hero-copy-done { grid-area: 1 / 1; transition: opacity 0.2s ease; }
+.hero-copy-done { opacity: 0; }
+.hero-copy.is-copied { background: oklch(0.55 0.17 150); color: oklch(1 0 0); }
+.hero-copy.is-copied .hero-copy-idle { opacity: 0; }
+.hero-copy.is-copied .hero-copy-done { opacity: 1; }
+
+.hero-term {
+  position: absolute;
+  top: 336px;
+  right: 20px;
+  width: 440px;
+  border-radius: 12px;
+  background: oklch(0.2 0.01 265);
+  color: oklch(0.92 0 0);
+  box-shadow: 0 0 0 0.5px oklch(1 0 0 / 0.14), 0 30px 50px -10px oklch(0 0 0 / 0.5);
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-term.is-on { opacity: 1; transform: none; }
+.hero-term-accent { color: oklch(0.75 0.18 145); }
+.hero-term-dir { color: oklch(0.75 0.12 230); }
+.hero-caret {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  vertical-align: -2px;
+  background: oklch(0.92 0 0);
+  animation: hero-blink 1s steps(1) infinite;
+}
+.hero-paste-chip {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 9px;
+  background: oklch(1 0 0 / 0.14);
+  opacity: 0;
+}
+.hero-paste-chip.is-flash { animation: hero-chip 1.4s ease forwards; }
+.hero-fade { opacity: 0; transform: translateY(4px); transition: opacity 0.35s ease, transform 0.35s ease; }
+.hero-fade.is-on { opacity: 1; transform: none; }
+
+.hero-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 40;
+  pointer-events: none;
+  transform: translate(var(--x), var(--y));
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 2px 3px oklch(0 0 0 / 0.3));
+}
+.hero-cursor.is-pressed svg { transform: scale(0.82); }
+.hero-cursor svg { transition: transform 0.12s ease; transform-origin: 5px 3px; }
+.hero-cursor[data-pos="start"] { --x: 900px; --y: 560px; }
+.hero-cursor[data-pos="c1"] { --x: 375px; --y: 210px; }
+.hero-cursor[data-pos="c2"] { --x: 604px; --y: 210px; }
+.hero-cursor[data-pos="c3"] { --x: 833px; --y: 210px; }
+.hero-cursor[data-pos="copy"] { --x: 912px; --y: 292px; }
+.hero-cursor[data-pos="term"] { --x: 920px; --y: 400px; }
+
+@keyframes hero-blink { 50% { opacity: 0; } }
+@keyframes hero-chip { 0% { opacity: 0; } 15%, 70% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-caret { animation: none; }
+  .hero-cursor, .hero-term, .hero-card, .hero-fade { transition: none; }
+}
+

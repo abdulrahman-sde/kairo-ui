@@ -53,7 +53,7 @@ export default function NotFoundView() {
                 404
               </div>
               <div className="text-muted-foreground absolute inset-x-6 bottom-4 flex items-center justify-between font-mono text-[10px]">
-                <span>404 — Page not found</span>
+                <span>404: Page not found</span>
                 <span className="flex items-center gap-1">
                   <span className="bg-destructive size-1.5 rounded-full" /> No
                   route
