@@ -72,12 +72,12 @@ export const HeroHeader = () => {
   return (
     <header>
       <nav className="fixed top-3 z-20 w-full">
-        <div className="mx-auto max-w-5xl px-7 lg:px-6">
+        <div className="max-w-5xl px-5 lg:px-6">
           <div
             className={cn(
               "relative flex items-center justify-between py-5 duration-300",
               isScrolled &&
-                "border-border bg-background/85 border-b backdrop-blur-xl lg:border-transparent lg:bg-transparent lg:backdrop-blur-none",
+                "border-border rounded-xl min-w-[340px] px-4 py-2 bg-background/85 border-b backdrop-blur-xl lg:border-transparent lg:bg-transparent lg:backdrop-blur-none",
             )}
           >
             {/* Left: logo (fades out on scroll, replaced by floating pill) */}
@@ -122,7 +122,7 @@ export const HeroHeader = () => {
             {/* Right: icon links + CTA (fades out on scroll) */}
             <div
               className={cn(
-                "flex items-center gap-0.5 duration-200 sm:gap-1",
+                "flex items-center  duration-200 -gap-1", 
                 isScrolled && "lg:opacity-0 lg:blur-xs lg:pointer-events-none",
               )}
             >
@@ -188,7 +188,7 @@ export const HeroHeader = () => {
                         type: "spring",
                         bounce: 0.1,
                       }}
-                      className="flex origin-left items-center overflow-hidden rounded-full gap-30"
+                      className="flex origin-left items-center overflow-hidden rounded-full gap-30 "
                     >
                       <ul className="flex gap-1">
                         {menuItems.map((item) => (
@@ -201,7 +201,7 @@ export const HeroHeader = () => {
                           </li>
                         ))}
                       </ul>
-                      <div className="flex items-center gap-1 mx-2">
+                      <div className="flex items-center gap-1 mx-1">
                         <GithubButton />
                         <ThemeToggle />
                         <Button size="sm" className="gap-1 pr-1" asChild>
