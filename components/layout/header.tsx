@@ -72,7 +72,7 @@ export const HeroHeader = () => {
   return (
     <header>
       <nav className="fixed top-3 z-20 w-full">
-        <div className="max-w-5xl px-5 lg:px-6">
+        <div className="mx-auto max-w-5xl px-5 lg:px-6">
           <div
             className={cn(
               "relative flex items-center justify-between py-5 duration-300",
